@@ -1,0 +1,12 @@
+{{ form_start(form) }}
+
+{{ form_errors(form) }}
+
+{{ form_widget(form) }}
+
+<input type="submit" class="btn btn-primary">
+<a href="{{ path('app_organization_list') }}" class="btn">
+    Retour
+</a>
+
+{{ form_end(form) }}

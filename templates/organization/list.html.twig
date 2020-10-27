@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="row mb-5 mt-5">
+            <ul class="nav justify-content-end">
+                <li class="nav-item">
+                    <a class="nav-link active" href="{{ path('app_organization_new') }}">Créer un nouvelle organisation</a>
+                </li>
+            </ul>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Nom de l'organisation</th>
+                            <th>Description</th>
+                            <th>Nombre d'utilisateur(s)</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for organization in organizations %}
+                        <tr>
+                            <td>{{ organization.name }}</td>
+                            <td>{{ organization.description|u.truncate(50, '...') }}</td>
+                            <td>{{ organization.users|length }}</td>
+                            <td>
+                                <ul>
+                                    <li>
+                                        <a href="{{ path('app_organization_edit', { 'name': organization.name|url_encode }) }}">
+                                            Modifier
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ path('app_organization_delete', { 'name': organization.name|url_encode }) }}">
+                                            Supprimer
+                                        </a>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
